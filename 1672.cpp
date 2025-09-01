@@ -1,24 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int maximumWealth(vector<vector<int>>& accounts);
-
+class Solution {
+  public:
+  int maximumWealth(vector<vector<int>>& accounts) {
+    int maxWealth = 0 ;
+    for (int i=0; i<accounts.size(); i++){
+            int wealth = 0 ;
+            for (int j=0; j<accounts[i].size(); j++){
+                wealth += accounts[i][j] ;
+              }
+            maxWealth = max(wealth, maxWealth) ;
+        }
+        return maxWealth ;
+    }
+};
 int main(){
-  // input: accounts = [[1, 2, 3], [3, 2, 1]]
-  vector<vector<int>> accounts = {{1, 2, 3}, {3, 2, 1}};
-  
-  cout << maximumWealth(accounts) << endl;
-  return 0;
-}
+  int m, n;
+    cin >> m >> n; // m = number of customers, n = number of banks
 
-int maximumWealth(vector<vector<int>>& accounts) {
-  int maxWealth = 0;
-  for (int i = 0; i < accounts.size(); i++) {
-      int wealth = 0;
-      for (int j = 0; j < accounts[i].size(); j++) {
-          wealth += accounts[i][j];
-      }
-      maxWealth = max(wealth, maxWealth);
-  }
-  return maxWealth;
+    vector<vector<int>> accounts(m, vector<int>(n));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> accounts[i][j];
+        }
+    }
+
+    Solution sol;
+    cout << sol.maximumWealth(accounts) << "\n";
+
+    return 0;
 }
